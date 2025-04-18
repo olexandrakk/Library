@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Бібліотека книжок</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Бібліотека книжок</h1>
+    <nav>
+      <button onclick="location.href='index.html'">Головна</button>
+      <button onclick="location.href='library.html'">Особиста бібліотека</button>
+      <button onclick="location.href='add.html'">Додати книгу</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Пошук книги...">
+      <button onclick="searchBooks()">Пошук</button>
+    </div>
+    <div class="illustration">
+      <img src="book_pen.png" alt="Книга і перо">
+    </div>
+    <div id="results" class="book-grid"></div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

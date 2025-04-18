@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Додати книгу</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Додати книгу</h1>
+    <nav>
+      <button onclick="location.href='index.html'">Головна</button>
+      <button onclick="location.href='library.html'">Особиста бібліотека</button>
+      <button onclick="location.href='add.html'">Додати книгу</button>
+    </nav>
+  </header>
+
+  <main>
+    <form id="addBookForm">
+      <input type="text" id="title" placeholder="Назва книги" required>
+      <input type="text" id="author" placeholder="Автор" required>
+      <input type="text" id="category" placeholder="Категорія">
+      <input type="number" id="rating" placeholder="Рейтинг" min="0" max="5">
+      <input type="url" id="image" placeholder="Посилання на обкладинку">
+      <input type="url" id="previewLink" placeholder="Посилання на перегляд">
+      <button type="submit">Додати</button>
+    </form>
+  </main>
+
+  <script>
+    document.getElementById('addBookForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Отримання значень із форми
+      const book = {
+        id: Date.now(),
+        title: document.getElementById('title').value,
+        author: document.getElementById('author').value,
+        category: document.getElementById('category').value,
+        rating: document.getElementById('rating').value,
+        image: document.getElementById('image').value,
+        previewLink: document.getElementById('previewLink').value
+      };
+
+      // Перевірка, чи не порожні поля
+      if (!book.title || !book.author) {
+        alert("Будь ласка, заповніть всі обов'язкові поля!");
+        return;
+      }
+
+      // Збереження книги в localStorage
+      const library = JSON.parse(localStorage.getItem('library')) || [];
+      library.push(book);
+      localStorage.setItem('library', JSON.stringify(library));
+
+      // Сповіщення про успіх
+      alert('Книгу додано!');
+      
+      // Очищення форми
+      this.reset();
+    });
+  </script>
+</body>
+</html>
